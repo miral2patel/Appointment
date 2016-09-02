@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 function daysClick(e) {
     var $clicked = $(e.target);
-    deleteAppointment(4);//($clicked.text());
+    createAppointment($clicked.text());
 }
 
 
@@ -56,8 +56,8 @@ function showAppointments() {
             for (var i = 0, item = null; i < dataset.length; i++) {
                 item = dataset.item(i);
 
-                var day = item.DATE[item.DATE.length - 1];
-                $(".days li:contains('" + day + "')").append('<a class="appointment" >' + item.DESCRIPTION + '</a>');
+                var day = item.DATE.split("-")[2];
+                $(".days li").filter(function () { return $(this).text() == day; }).append('<a class="appointment" >' + item.DESCRIPTION + '</a>');
             }
         });
     });
